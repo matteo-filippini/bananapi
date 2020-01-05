@@ -1,0 +1,18 @@
+sudo dkms install gasket-dkms/1.0 --kernelsourcedir=/usr/src/linux-headers-$(uname -r)
+
+Preparing kernel 4.9.119-BPI-M4-Kernel for module build:
+(This is not compiling a kernel, just preparing kernel symbols)
+Storing current .config to be restored when complete
+Running Generic preparation routine
+make mrproper........(bad exit status: 2)
+: using /usr/src/linux-headers-4.9.119-BPI-M4-Kernel/.config
+(I hope this is the correct config for this kernel)
+make oldconfig..........
+make prepare-all....(bad exit status: 2)
+
+Building module:
+cleaning build area....
+make KERNELRELEASE=4.9.119-BPI-M4-Kernel -C /usr/src/linux-headers-4.9.119-BPI-M4-Kernel M=/var/lib/dkms/gasket-dkms/1.0/build....(bad exit status: 2)
+Error! Bad return status for module build on kernel: 4.9.119-BPI-M4-Kernel (aarch64)
+Consult /var/lib/dkms/gasket-dkms/1.0/build/make.log for more information.
+

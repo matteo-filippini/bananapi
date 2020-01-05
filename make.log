@@ -1,0 +1,19 @@
+DKMS make.log for gasket-dkms-1.0 for kernel 4.9.119-BPI-M4-Kernel (aarch64)
+Sun Dec 22 23:58:39 CST 2019
+make: Entering directory '/usr/src/linux-headers-4.9.119-BPI-M4-Kernel'
+arch/arm64/Makefile:27: ld does not support --fix-cortex-a53-843419; kernel may be susceptible to erratum
+arch/arm64/Makefile:49: LSE atomics not supported by binutils
+./scripts/gcc-version.sh: line 25: aarch64-linux-gcc: command not found
+./scripts/gcc-version.sh: line 26: aarch64-linux-gcc: command not found
+make: aarch64-linux-gcc: Command not found
+make: aarch64-linux-gcc: Command not found
+make: aarch64-linux-gcc: Command not found
+make: aarch64-linux-gcc: Command not found
+make: aarch64-linux-gcc: Command not found
+  LD      /var/lib/dkms/gasket-dkms/1.0/build/built-in.o
+/bin/sh: 1: aarch64-linux-ar: not found
+scripts/Makefile.build:508: recipe for target '/var/lib/dkms/gasket-dkms/1.0/build/built-in.o' failed
+make[1]: *** [/var/lib/dkms/gasket-dkms/1.0/build/built-in.o] Error 127
+Makefile:1613: recipe for target '_module_/var/lib/dkms/gasket-dkms/1.0/build' failed
+make: *** [_module_/var/lib/dkms/gasket-dkms/1.0/build] Error 2
+make: Leaving directory '/usr/src/linux-headers-4.9.119-BPI-M4-Kernel'
