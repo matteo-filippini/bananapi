@@ -1,6 +1,6 @@
 # bananapi
 
-To install drivers for google coral M.2 ideally we can proceed in two ways: compiling the driver as module directly on banana pi or cross compiling the whole kernel configuring the driver as module. Actually both are not working.  
+To install drivers for google coral M.2 ideally we can proceed in two ways: compiling the driver as module directly on banana pi through dkms or cross compiling the whole kernel configuring the driver as module. Actually both are not working.  
 
 Get the ubuntu server 16.04 image to burn on SD:  
 *https://drive.google.com/open?id=1G4915FPOU4pDzbI0TCFH8wWXUGmNdlkF* to upload the image on SD card (at least 8GB) the bpi-tools can be used *curl -sL https://github.com/BPI-SINOVOIP/bpi-tools/raw/master/bpi-tools | sudo -E bash -* then the command is: *sudo bpi-copy <xxxxx.img.zip> <device path ie /dev/sdb>*  
@@ -43,5 +43,15 @@ Download coral drivers (from google support):
 2) Unpack and change dir: *dpkg-deb -R gasket-dkms_1.0-9_all.deb gasket && cd gasket   
 3) Copy the src to the correct name/location: *sudo cp -r usr/src/gasket-1.0 /usr/src/gasket-dkms-1.0  
 4) Finally, add and install the driver (here the $(uname -r) should be switched to your 4.9 header, we have tested with 4.19 and cannot commit if everything will work perfectly with 4.9):
-*sudo dkms add gasket-dkms/1.0 --kernelsourcedir=/usr/src/linux-headers--$(uname -r)
+*sudo dkms add gasket-dkms/1.0 --kernelsourcedir=/usr/src/linux-headers-$(uname -r)
 *sudo dkms install gasket-dkms/1.0 --kernelsourcedir=/usr/src/linux-headers-$(uname -r)
+
+ERRORS:
+
+running point 4 from the procedure suggested by google support, raises the errors in *make_shell.log* and *make.log*
+
+alternatively running *sudo insmod /lib/modules/4.9.119-BPI-M4-Kernel/kernel/drivers/gasket/gasket.ko* gives 
+*insmod: ERROR: could not insert module /lib/modules/4.9.119-BPI-M4-Kernel/kernel/drivers/gasket/gasket.ko: Invalid parameters* with dmesg log in *dmesg.log*
+
+
+
