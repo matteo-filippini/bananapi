@@ -9,15 +9,27 @@ This image does not include kernel headers useful to compile the driver so is st
 
 *git clone https://github.com/BPI-SINOVOIP/BPI-M4-bsp.git* (banana pi kernel sources and other stuff)
 
-banana pi gives a docker with all dependecies installed to easly cross compile the kernel, so get the sinovoip docker:   
+banana pi gives a docker with all dependecies installed to easly cross compile the kernel, so you can get the sinovoip docker running:   
 *docker pull sinovoip/bpi-build-linux-4.4:ubuntu16.04*  
 
-run the docker:  
+1) before compiling the kernel, coral driver can be added to drivers dir (to compile them as module):  
+download and extract deb package (instructions below) or use the version on this git. The version here already includes Makefile and Kconfig I edited to correctly see the module on kernel config menu. Put gasket folder, Makefile e Kconfig in /BPI-M4-bsp/linux-rtk/drivers folder   
+
+2) run the docker:  
 *sudo docker run -v /media:/media -t -i sinovoip/bpi-build-linux-4.4:ubuntu16.04 /bin/bash*
+I'm working on a secondary hdd I can reach mounting /media on the docker
 
-before compiling the kernel, coral driver can be added to drivers dir (to compile them as module):  
-download and extract deb package (instructions below) or use the version on this git. The version here already includes Makefile and Kconfig I edited to correctly see the module on kernel config menu.   
+3) build and run kernel configuration menu (I don't know if this is really required. I configured gasket as module by default so maybe building the configuration is still required to update default configuration). Move to /BPI-M4-bsp/ folder and run  
+*./build.sh 4* and just exit  
 
+4) Build all bsp packages 
+*./build.sh 1*  
+and exit from docker
+
+5) Update SD card with new compiled packages using BPI-tools 
+*Problem: bsp seems to be unable to create a correct BPI-BOOT image,so I'm avoiding to upload that image, pkgs to upload can be selected in /SD/bpi-m4/BPI-m4.conf. Original file is here https://github.com/BPI-SINOVOIP/BPI-files/blob/69594603ab8ceb102d77818982897c00c86d6d15/others/for-bpi-tools/conf/board/bpi-m4.conf, edited file in this git)*  
+download BPI-tools if you didn't already, edit BPI-M4-bsp/scripts/mk_install_sd.sh, locate *sudo bpi-update -d ${DEVICE}* add *-c bpi-m4.conf*, save and move to /BPI-M4-bsp/ folder then:  
+*./build.sh 7* SD device is likely to be in /dev/sdb    
 
 Download coral drivers (from google support):  
 1) *apt download gasket-dkms (download the deb package)   
