@@ -32,6 +32,13 @@ download BPI-tools if you didn't already, edit BPI-M4-bsp/scripts/mk_install_sd.
 *./build.sh 7* SD device is likely to be in /dev/sdb    
 
 Download coral drivers (from google support):  
+
+*echo "deb https://packages.cloud.google.com/apt coral-edgetpu-stable main" | sudo tee /etc/apt/sources.list.d/coral-edgetpu.list
+
+*curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
+
+*sudo apt update
+
 1) *apt download gasket-dkms (download the deb package)   
 2) Unpack and change dir: *dpkg-deb -R gasket-dkms_1.0-9_all.deb gasket && cd gasket   
 3) Copy the src to the correct name/location: *sudo cp -r usr/src/gasket-1.0 /usr/src/gasket-dkms-1.0  
