@@ -1,6 +1,8 @@
 # bananapi
 
-To install drivers for google coral M.2 ideally we can proceed in two ways: compiling the driver as module directly on banana pi through dkms or cross compiling the whole kernel configuring the driver as module. Actually both are not working.  
+The aim is getting google coral M.2 working on banana pi M4
+
+To install drivers for google coral M.2 ideally we can proceed in two ways: compiling the driver as module directly on banana pi through dkms or cross compiling the whole kernel configuring the driver as module. Actually both are not working, see ERRORS section below.  
 
 Get the ubuntu server 16.04 image to burn on SD:  
 *https://drive.google.com/open?id=1G4915FPOU4pDzbI0TCFH8wWXUGmNdlkF* to upload the image on SD card (at least 8GB) the bpi-tools can be used *curl -sL https://github.com/BPI-SINOVOIP/bpi-tools/raw/master/bpi-tools | sudo -E bash -* then the command is: *sudo bpi-copy <xxxxx.img.zip> <device path ie /dev/sdb>*  
