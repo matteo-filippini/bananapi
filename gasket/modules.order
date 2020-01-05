@@ -1,0 +1,2 @@
+kernel/drivers/gasket/gasket.ko
+kernel/drivers/gasket/apex.ko
