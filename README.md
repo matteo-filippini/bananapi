@@ -35,18 +35,18 @@ download BPI-tools if you didn't already, edit BPI-M4-bsp/scripts/mk_install_sd.
 
 Download coral drivers (from google support):  
 
-*echo "deb https://packages.cloud.google.com/apt coral-edgetpu-stable main" | sudo tee /etc/apt/sources.list.d/coral-edgetpu.list
+*echo "deb https://packages.cloud.google.com/apt coral-edgetpu-stable main" | sudo tee /etc/apt/sources.list.d/coral-edgetpu.list*
 
-*curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
+*curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -*
 
-*sudo apt update
+*sudo apt update*
 
-1) *apt download gasket-dkms (download the deb package)   
-2) Unpack and change dir: *dpkg-deb -R gasket-dkms_1.0-9_all.deb gasket && cd gasket   
-3) Copy the src to the correct name/location: *sudo cp -r usr/src/gasket-1.0 /usr/src/gasket-dkms-1.0  
+1) *apt download gasket-dkms* (download the deb package)   
+2) Unpack and change dir: *dpkg-deb -R gasket-dkms_1.0-9_all.deb gasket && cd gasket*   
+3) Copy the src to the correct name/location: *sudo cp -r usr/src/gasket-1.0 /usr/src/gasket-dkms-1.0*  
 4) Finally, add and install the driver (here the $(uname -r) should be switched to your 4.9 header, we have tested with 4.19 and cannot commit if everything will work perfectly with 4.9):
-*sudo dkms add gasket-dkms/1.0 --kernelsourcedir=/usr/src/linux-headers-$(uname -r)
-*sudo dkms install gasket-dkms/1.0 --kernelsourcedir=/usr/src/linux-headers-$(uname -r)
+*sudo dkms add gasket-dkms/1.0 --kernelsourcedir=/usr/src/linux-headers-$(uname -r)*
+*sudo dkms install gasket-dkms/1.0 --kernelsourcedir=/usr/src/linux-headers-$(uname -r)*
 
 ERRORS:
 
