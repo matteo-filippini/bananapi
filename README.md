@@ -54,6 +54,17 @@ running point 4 from the procedure suggested by google support, raises the error
 
 alternatively running *sudo insmod /lib/modules/4.9.119-BPI-M4-Kernel/kernel/drivers/gasket/gasket.ko* gives 
 *insmod: ERROR: could not insert module /lib/modules/4.9.119-BPI-M4-Kernel/kernel/drivers/gasket/gasket.ko: Invalid parameters* with dmesg log in *dmesg.log*
+update 09/01 using modprobe -f, modules are loaded but the device cannot be correctly initialized with this dmesg error:
+*[ 418.976141] gasket: module_layout: kernel tainted.
+[ 418.976170] Disabling lock debugging due to kernel taint
+[ 423.373659] apex 0000:01:00.0: can’t enable device: BAR 0 [mem 0x00000000-0x00003fff 64bit pref] not claimed
+[ 423.373699] apex 0000:01:00.0: BAR 2: no space for [mem size 0x00100000 64bit pref]
+[ 423.373712] apex 0000:01:00.0: BAR 2: failed to assign [mem size 0x00100000 64bit pref]
+[ 423.373730] apex 0000:01:00.0: BAR 0: assigned [mem 0x98064000-0x98067fff 64bit pref]
+[ 423.374483] apex 0000:01:00.0: enabling device (0000 -> 0002)
+[ 423.375621] apex 0000:01:00.0: Cannot get BAR2 base address
+[ 423.375963] apex 0000:01:00.0: error adding gasket device
+[ 423.376161] apex: probe of 0000:01:00.0 failed with error -12  
 
-
+This seems to be a problem with the kernel pci express support http://forum.banana-pi.org/t/bar-0-no-space-for-mem-size-0x200000000-64bit-pref/10418/39
 
